@@ -1,0 +1,33 @@
+<div class="single-wrapper">
+	<header>
+		<h1 id="logo"><%= image_tag 'common/logo.svg', alt:'Yellow' %></h1>
+	</header>
+	<main class="login-content">
+		<%= form_tag({controller: :login, action: :index}) do %>
+			<% unless @error_message.blank? %>
+				<p class="text-error">ログインに失敗しました。</p>
+			<% end %>
+			<% unless @success_message.blank? %>
+				<p class="text-success text-success-logout">ログアウトしました。</p>
+			<% end %>
+			<ul>
+				<li>
+					<%= label :user, "email", "メールアドレス", class: "label-text" %>
+					<%= email_field :user, :email, placeholder:"sample@gray-code.com", class:"input-text", value: @email %>
+				</li>
+				<li>
+					<%= label :user, :password, "パスワード", class: "label-text" %>
+					<%= password_field :user, :password, class:"input-text", value: @password %>
+				</li>
+			</ul>
+			<div class="btn-area"><input type="submit" class="btn-yellow" name="btn-login" value="ログイン"></div>
+			<hr>
+			<p class="text-guide">アカウント登録がお済みでない方はこちら</p>
+			<div class="btn-area"><a class="btn-white" href="/pre-register">アカウント登録</a></div>
+		<% end %>
+		<p class="text-link link-forgot-password"><a href="/pre-password-reset">パスワードを忘れてしまった方はこちら</a></p>
+	</main>
+	<section class="single-ad-space">
+		<%= render 'application/singlead' %>
+	</section>
+</div>

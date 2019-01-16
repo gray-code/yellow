@@ -1,0 +1,2 @@
+class PReset < ApplicationRecord
+end

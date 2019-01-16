@@ -1,0 +1,143 @@
+<div class="wrapper">
+	<main class="main-content balance-content">
+		<div class="main-wrap">
+<!-- 			<p><%= debug @data_cat5 %></p> -->
+			<h1>残高試算表</h1>
+			<nav>
+				<%= select :bs, :viewdate, @select_date_list, { include_blank: nil, selected: @selected} %>
+				<div class="pagination-area">
+					<a class="btn-prev" href="/book/balancecalc/?t=<%= @prev_param %>"></a><a class="btn-next" href="/book/balancecalc/?t=<%= @next_param %>"></a>
+				</div>
+			</nav>
+			<table>
+				<tr>
+					<th class="cell-top-left th-item">項目</th><th class="th-debit">借方</th><th class="th-credit cell-top-right cell-right">貸方</th>
+				</tr>
+				<%
+				# 仮計と合計を計算するための変数
+				pre_total1 = [ 0, 0]
+				pre_total2 = [ 0, 0]
+				total = [ 0, 0]
+				line_index = 0
+				%>
+				<% if 0 < @data_cat1.size %>
+					<% @data_cat1.each do |data| %>
+						<tr>
+							<td class="cell-item cell-asset"><%= data[:label] %></td>
+							<td class="cell-debit">¥<%= data[:total].to_s(:delimited, delimiter: ',') %></td>
+							<td class="cell-credit cell-right"></td>
+						</tr>
+						<%
+						line_index += 1
+						pre_total1[0] += data[:total]
+						%>
+					<% end %>
+				<% end %>
+				<% if 0 < @data_cat2.size %>
+					<% line_index = 0 %>
+					<% @data_cat2.each do |data| %>
+						<% if line_index === 0 %>
+							<tr class="line-category">
+						<% else %>
+							<tr>
+						<% end %>
+							<td class="cell-item cell-liabilities"><%= data[:label] %></td>
+							<td class="cell-debit"></td>
+							<td class="cell-credit cell-right">¥<%= data[:total].to_s(:delimited, delimiter: ',') %></td>
+						</tr>
+						<%
+						line_index += 1
+						pre_total1[1] += data[:total] %>
+					<% end %>
+				<% end %>
+				<% if 0 < @data_cat3.size %>
+					<% line_index = 0 %>
+					<% @data_cat3.each do |data| %>
+						<% if line_index === 0 %>
+							<tr class="line-category">
+						<% else %>
+							<tr>
+						<% end %>
+							<td class="cell-item cell-capital"><%= data[:label] %></td>
+							<td class="cell-debit"></td>
+							<td class="cell-credit cell-right">¥<%= data[:total].to_s(:delimited, delimiter: ',') %></td>
+						</tr>
+						<%
+						line_index += 1
+						pre_total1[1] += data[:total]
+						%>
+					<% end %>
+				<% end %>
+				<%
+				total[0] += pre_total1[0]
+				total[1] += pre_total1[1]
+				%>
+				<tr class="line-category">
+					<td class="cell-item cell-pre-total">仮計</td>
+					<td class="cell-debit cell-pre-total">¥<%= pre_total1[0].to_s(:delimited, delimiter: ',') %></td>
+					<td class="cell-credit cell-pre-total cell-right">¥<%= pre_total1[1].to_s(:delimited, delimiter: ',') %></td>
+				</tr>
+				<% if 0 < @data_cat4.size %>
+					<% line_index = 0 %>
+					<% @data_cat4.each do |data| %>
+						<% if line_index === 0 %>
+							<tr class="line-category">
+						<% else %>
+							<tr>
+						<% end %>
+							<td class="cell-item cell-income"><%= data[:label] %></td>
+							<td class="cell-debit"></td>
+							<td class="cell-credit cell-right">¥<%= data[:total].to_s(:delimited, delimiter: ',') %></td>
+						</tr>
+						<%
+						line_index += 1
+						pre_total2[1] += data[:total]
+						%>
+					<% end %>
+				<% end %>
+				<% if 0 < @data_cat5.size %>
+					<% line_index = 0 %>
+					<% @data_cat5.each do |data| %>
+						<% if line_index === 0 %>
+							<tr class="line-category">
+						<% else %>
+							<tr>
+						<% end %>
+							<td class="cell-item cell-cost"><%= data[:label] %></td>
+							<td class="cell-debit">¥<%= data[:total].to_s(:delimited, delimiter: ',') %></td>
+							<td class="cell-credit cell-right"></td>
+						</tr>
+						<%
+						line_index += 1
+						pre_total2[0] += data[:total]
+						%>
+					<% end %>
+				<% end %>
+				<%
+				total[0] += pre_total2[0]
+				total[1] += pre_total2[1]
+				%>
+				<tr class="line-category">
+					<td class="cell-item cell-pre-total">仮計</td>
+					<td class="cell-debit cell-pre-total">¥<%= pre_total2[0].to_s(:delimited, delimiter: ',') %></td>
+					<td class="cell-credit cell-pre-total cell-right">¥<%= pre_total2[1].to_s(:delimited, delimiter: ',') %></td>
+				</tr>
+				<tr class="category-line">
+					<td class="cell-item cell-bottom cell-bottom-left cell-total">合計</td>
+					<td class="cell-debit cell-bottom cell-total">¥<%= total[0].to_s(:delimited, delimiter: ',') %></td>
+					<td class="cell-right cell-credit cell-bottom cell-bottom-right cell-total">¥<%= total[1].to_s(:delimited, delimiter: ',') %></td>
+				</tr>
+			</table>
+
+			<nav class="bottom-nav-area">
+				<div class="pagination-area">
+					<a class="btn-prev" href="/book/balancecalc/?t=<%= @prev_param %>"></a><a class="btn-next" href="/book/balancecalc/?t=<%= @next_param %>"></a>
+				</div>
+			</nav>
+			<section class="main-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</div>
+	</main>
+	<%= render 'application/side' %>
+</div>

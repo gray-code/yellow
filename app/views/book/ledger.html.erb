@@ -1,0 +1,98 @@
+<div class="wrapper">
+	<main class="main-content ledger-content">
+		<div class="main-wrap">
+			<h1><%= @view_date.year %>年 総勘定元帳</h1>
+			<nav>
+				<%= select :entry, :viewitem, @item_select_data, { include_blank: nil, selected: @selected} %>
+				<input type="hidden" id="viewyear" name="viewyear" value="<%= @view_date.year %>">
+				<div class="pagination-area">
+					<a class="btn-prev" href="/book/ledger/<%= @prev_param %>"></a><a class="btn-next" href="/book/ledger/<%= @next_param %>"></a>
+				</div>
+			</nav>
+			<table>
+				<tr>
+					<th class="cell-top-left th-date">日付</th><th class="th-item">対の項目</th><th class="th-debit">借方</th><th class="th-credit">貸方</th><th class="th-monthly-total">月別差引残高</th><th class="th-total cell-top-right cell-right">差引残高</th>
+				</tr>
+				<%
+				# Initialize
+				year_total = 0
+				first_month = nil
+				
+				if @entry_not_blank_flag
+
+					12.times do |i|
+	
+						# Initialize
+						monthly_total = 0
+						first_day = true
+	
+						if first_month === nil && !@entry_data[i].blank?
+							unless @entry_data[i][0].blank?
+								unless @entry_data[i][0][:date].blank?
+	 								first_month = @entry_data[i][0][:date].month
+								end
+							end
+	 					end
+	
+						@entry_data[i].each do |data| %>
+							<% first_month %>
+							<%
+							# Initialize
+							debit_number = 0;
+							credit_number = 0;
+							view_debit_number = nil
+							view_credit_number = nil
+
+							unless data[:debit_number].blank?
+								debit_number = data[:debit_number].to_i
+								view_debit_number = "¥" + data[:debit_number].to_s(:delimited, delimiter: ',')
+							end
+	
+							unless data[:credit_number].blank?
+								credit_number = data[:credit_number].to_i
+								view_credit_number = "¥" + data[:credit_number].to_s(:delimited, delimiter: ',')
+							end
+	
+							monthly_total = monthly_total + debit_number - credit_number
+							year_total = year_total + debit_number - credit_number
+							%>
+							<% if first_month != nil && first_day === true && first_month != data[:date].month %>
+								<% first_day = false %>
+								<tr class="line-monthly">
+							<% else %>
+								<tr>
+							<% end %>
+							<td class="cell-date"><%= data[:date_format] %></td>
+							<td class="cell-item"><ul>
+							<% 5.times do |item_i| %>
+								<% index = item_i + 1 %>
+								<% unless data[:conflict_items][item_i].blank? %>
+									<li><%= data[:conflict_items][item_i] %> <span>¥<%= data[:conflict_prices][item_i].to_s(:delimited, delimiter: ',') %></span></li>	
+								<% end %>
+							<% end %>
+							</ul></td>
+							<td class="cell-debit"><%= view_debit_number %></td>
+							<td class="cell-credit"><%= view_credit_number %></td>
+							<td class="cell-monthly-total">¥<%= monthly_total.to_s(:delimited, delimiter: ',') %></td>
+							<td class="cell-right cell-total">¥<%= year_total.to_s(:delimited, delimiter: ',') %></td>
+						</tr>
+						<% end %>
+					<% end %>
+
+				<% else %>
+					<tr><td class="cell-empty" colspan="6">こちらの項目の仕訳はありません</td></tr>
+				<% end %>
+			</table>
+
+			<nav class="bottom-nav-area">
+				<div class="pagination-area">
+					<a class="btn-prev" href="/book/ledger/<%= @prev_param %>"></a><a class="btn-next" href="/book/ledger/<%= @next_param %>"></a>
+				</div>
+			</nav>
+			<section class="main-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</div>
+	</main>
+	<%= render "application/side" %>
+</div>

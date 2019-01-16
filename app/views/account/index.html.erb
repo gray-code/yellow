@@ -1,0 +1,124 @@
+<div class="wrapper">
+	<main class="main-content">
+		<div id="popup-message" class="popup-message">
+			<p><span id="message-content">登録しました。</span><a href="#">&times;</a></p>
+		</div>
+		<article class="main-wrap">
+			<h1 class="title-account">アカウント設定</h1>
+			<section class="mypage-base account-setting-base">
+				<h2>アカウント</h2>
+				<hr>
+				<dl class="account-infomation">
+					<dt>氏名</dt>
+					<dd><%= session["user"]["u_name"] %></dd>
+					<dt>フリガナ</dt>
+					<dd><%= session["user"]["u_furigana"] %></dd>
+					<dt>メールアドレス</dt>
+					<dd><%= session["user"]["u_email"] %></dd>
+					<dt>電話番号</dt>
+					<dd><%= session["user"]["u_tel"] %></dd>
+					<dt>生年月日</dt>
+					<dd><% birthday = Time.parse(session["user"]["u_birthday"]) %>
+					<%= birthday.strftime("%Y年%m月%d日") %></dd>
+					<% unless session["user"]["u_business_name"].blank? %>
+						<dt>屋号</dt>
+						<dd><%= session["user"]["u_business_name"] %></dd>
+					<% end %>
+					<dt>最終更新日</dt>
+					<dd>2017年 2月 10日</dd>
+				</dl>
+				<dl class="setting-link-list">
+					<dt>設定変更</dt>
+					<dd><a href="/account/edit">登録情報の変更</a></dd>
+					<dd><a href="/account/emailedit">メールアドレス変更</a></dd>
+					<dd><a href="/account/passedit">パスワード変更</a></dd>
+					<dd><a href="/unsubscription/">退会</a></dd>
+				</dl>
+			</section>
+			<section class="mypage-base item-setting-base">
+				<h2>仕訳帳</h2>
+				<hr>
+				<div class="item-list-wrap">
+					<dl class="item-list asset-category">
+						<dt>資産</dt>
+						<dd>
+							<% unless @asset.blank? %>
+							<ul>
+								<% @asset.each do |value| %>
+									<li><%= value.i_label %></li>
+								<% end %>
+							</ul>
+							<% end %>
+						</dd>
+					</dl>
+					<dl class="item-list liabilities-category">
+						<dt>負債</dt>
+						<dd>
+							<% unless @debt.blank? %>
+							<ul>
+								<% @debt.each do |value| %>
+									<li><%= value.i_label %></li>
+								<% end %>
+							</ul>
+							<% end %>
+						</dd>
+					</dl>
+				</div>
+				<div>
+					<dl class="item-list capital-category">
+						<dt>資本</dt>
+						<dd>
+							<% unless @net_asset.blank? %>
+							<ul>
+								<% @net_asset.each do |value| %>
+									<li><%= value.i_label %></li>
+								<% end %>
+							</ul>
+							<% end %>
+						</dd>
+					</dl>
+					<dl class="item-list income-category">
+						<dt>収入</dt>
+						<dd>
+							<% unless @income.blank? %>
+							<ul>
+								<% @income.each do |value| %>
+									<li><%= value.i_label %></li>
+								<% end %>
+							</ul>
+							<% end %>
+						</dd>
+					</dl>
+				</div>
+				<div>
+					<dl class="item-list cost-category">
+						<dt>費用</dt>
+						<dd>
+							<% unless @cost.blank? %>
+							<ul>
+								<% @cost.each do |value| %>
+									<li><%= value.i_label %></li>
+								<% end %>
+							</ul>
+							<% end %>
+						</dd>
+					</dl>
+				</div>
+				<hr>
+				<div class="btn-area"><a class="btn-white" href="/account/itemedit">仕訳項目の編集</a></div>
+			</section>
+			<section class="terms-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</article>
+	</main>
+	<%= render 'application/side' %>
+</div>
+
+<% unless @message.blank? %>
+<script type="text/javascript">
+$(function(){
+	viewPopup("<%= @message %>");
+});
+</script>
+<% end %>

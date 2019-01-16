@@ -1,0 +1,150 @@
+<div id="back-sheet">
+
+	<!-- 登録ウインドウ -->
+	<section id="add-item" class="little-window">
+		<%= form_tag(action: :itemcreate) do %>
+		<a class="btn-close btn-add-close-action" href="#">&times;</a>
+		<p class="text-window-name">仕訳項目の追加</p>
+		<hr>
+		<p class="text-error" id="error-item-add-text">項目の追加に失敗しました</p>
+		<dl class="item-input-list">
+			<dt>カテゴリー</dt><dd><%= select :item, :category, [
+			['資本', 1],
+			['負債', 2],
+			['資産', 3],
+			['収入', 4],
+			['費用', 5]], { include_blank: '選択してください'}, class:"input-select" %></dd>
+			<dt>ラベル</dt><dd><%= text_field :item, :label, placeholder:"項目名を入力してください", class:"input-text" %></dd>
+			<dt>メモ</dt><dd><%= text_area :item, :memo, class:"input-textarea" %></dd>
+		</dl>
+		<hr>
+		<div class="btn-area">
+			<a class="btn-white btn-delete-cancel btn-add-close-action" href="#">キャンセル</a><a id="add-item-action" class="btn-yellow" href="#">登録</a>
+		</div>
+		<% end %>
+	</section>
+	<!-- //登録ウインドウ -->
+
+	<!-- 更新ウインドウ -->
+	<section id="edit-item" class="little-window">
+		<%= form_tag(action: :itemmodify) do %>
+		<a class="btn-close btn-edit-close-action" href="#">&times;</a>
+		<p class="text-window-name">仕訳項目の編集</p>
+		<hr>
+		<p class="text-alert" id="alert-item-edit-text">こちらの項目は「メモ」のみ編集可能です。</p>
+		<p class="text-error" id="error-item-edit-text">項目の更新に失敗しました</p>
+		<dl class="item-input-list">
+			<dt>カテゴリー</dt><dd><%= select :item, :category, [
+			['資本', 1],
+			['負債', 2],
+			['資産', 3],
+			['収入', 4],
+			['費用', 5]], { include_blank: '選択してください'}, class:"input-select" %></dd>
+			<dt>ラベル</dt><dd><%= text_field :item, :label, placeholder:"項目名を入力してください", class:"input-text" %></dd>
+			<dt>メモ</dt><dd><%= text_area :item, :memo, class:"input-textarea" %></dd>
+		</dl>
+		<hr>
+		<div class="btn-area">
+			<a class="btn-white btn-delete-cancel btn-edit-close-action" href="#">キャンセル</a><a id="edit-item-action" class="btn-yellow" href="#">更新</a>
+		</div>
+		<%= hidden_field :item, :id %>
+		<% end %>
+	</section>
+	<!-- //更新ウインドウ -->
+
+	<!-- 削除ウインドウ -->
+	<section id="delete-item" class="little-window">
+		<%= form_tag(action: :itemdelete) do %>
+		<a class="btn-close btn-delete-close-action" href="#">&times;</a>
+		<p class="text-window-name">削除</p>
+		<hr>
+		<p class="text-error" id="error-item-delete-text">仕訳で使用している項目は削除できません。</p>
+		<p class="text-message">「<span id="delete-item-label">資産</span>」を削除します。<br>よろしいですか？</p>
+		<hr>
+		<div class="btn-area">
+			<a class="btn-white btn-delete-cancel btn-delete-close-action" href="#">閉じる</a><a id="delete-item-action" class="btn-yellow" href="#">削除</a>
+		</div>
+		<%= hidden_field :item, :deleteid %>
+		<% end %>
+	</section>
+	<!-- //削除ウインドウ -->
+</div>
+<div class="wrapper">
+	<main class="main-content item-edit-content">
+		<div id="popup-message" class="popup-message">
+			<p><span id="message-content">新しい仕訳を登録しました。</span><a href="#">&times;</a></p>
+		</div>
+		<article class="main-wrap">
+			<h1 class="title-account">仕訳項目の編集</h1>
+			<nav>
+				<a id="btn-add-item" class="btn-add-item" href="#">&plus;</a>
+			</nav>
+			<section class="mypage-base item-setting-base item-setting-page">
+				<dl class="item-list asset-category">
+					<dt>資産</dt>
+					<dd>
+						<ul>
+						<% unless @asset.blank? %>
+							<% @asset.each do |value| %>
+								<li><span><%= value.i_label %></span><a class="link-item-edit" href="#"><%= image_tag 'common/icon-arrow-edit.png' %></a><%= hidden_field :item, :id, value: value.id %><%= hidden_field :item, :label, value: value.i_label %><%= hidden_field :item, :category, value: value.i_category %><%= hidden_field :item, :memo, value: value.i_memo %></li>
+							<% end %>
+						<% end %>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="item-list liabilities-category">
+					<dt>負債</dt>
+					<dd>
+						<ul>
+						<% unless @debt.blank? %>
+							<% @debt.each do |value| %>
+								<li><span><%= value.i_label %></span><a class="link-item-edit" href="#"><%= image_tag 'common/icon-arrow-edit.png' %></a><%= hidden_field :item, :id, value: value.id %><%= hidden_field :item, :label, value: value.i_label %><%= hidden_field :item, :category, value: value.i_category %><%= hidden_field :item, :memo, value: value.i_memo %></li>
+							<% end %>
+						<% end %>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="item-list capital-category">
+					<dt>資本</dt>
+					<dd>
+						<ul>
+						<% unless @net_asset.blank? %>
+							<% @net_asset.each do |value| %>
+								<li><span><%= value.i_label %></span><a class="link-item-edit" href="#"><%= image_tag 'common/icon-arrow-edit.png' %></a><%= hidden_field :item, :id, value: value.id %><%= hidden_field :item, :label, value: value.i_label %><%= hidden_field :item, :category, value: value.i_category %><%= hidden_field :item, :memo, value: value.i_memo %></li>
+							<% end %>
+						<% end %>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="item-list income-category">
+					<dt>収入</dt>
+					<dd>
+						<ul>
+						<% unless @income.blank? %>
+							<% @income.each do |value| %>
+								<li><span><%= value.i_label %></span><a class="link-item-edit" href="#"><%= image_tag 'common/icon-arrow-edit.png' %></a><%= hidden_field :item, :id, value: value.id %><%= hidden_field :item, :label, value: value.i_label %><%= hidden_field :item, :category, value: value.i_category %><%= hidden_field :item, :memo, value: value.i_memo %></li>
+							<% end %>
+						<% end %>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="item-list cost-category">
+					<dt>費用</dt>
+					<dd>
+						<ul>
+						<% unless @cost.blank? %>
+							<% @cost.each do |value| %>
+								<li><span><%= value.i_label %></span><a class="link-item-edit" href="#"><%= image_tag 'common/icon-arrow-edit.png' %></a><%= hidden_field :item, :id, value: value.id %><%= hidden_field :item, :label, value: value.i_label %><%= hidden_field :item, :category, value: value.i_category %><%= hidden_field :item, :memo, value: value.i_memo %></li>
+							<% end %>
+						<% end %>
+						</ul>
+					</dd>
+				</dl>
+			</section>
+			<section class="terms-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</article>
+	</main>
+	<%= render 'application/side' %>
+</div>

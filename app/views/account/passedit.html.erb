@@ -1,0 +1,48 @@
+<div class="wrapper">
+	<main class="main-content">
+		<div id="popup-message" class="popup-message">
+			<p><span id="message-content">新しい仕訳を登録しました。</span><a href="#">&times;</a></p>
+		</div>
+		<article class="main-wrap">
+			<h1 class="title-account">パスワード変更</h1>
+			<section class="mypage-base account-edit-base">
+				<%= form_tag(action: :passedit) do %>
+					<% unless @message.blank? %>
+						<p class="text-error"><%= @message %></p>
+					<% end %>
+					<ul>
+						<li>
+							<%= label :user, :nowpassword, "現在お使いのパスワード", class: "label-text" %>
+							<%= password_field :user, :nowpassword, class:"input-mypage-text", placeholder:"現在のパスワードを入力してください", value: @old %>
+						</li>
+						<li>
+							<%= label :user, :newpassword, "新しいパスワード (半角英数、8字以上20字以内)", class: "label-text" %>
+							<%= password_field :user, :newpassword, class:"input-mypage-text", placeholder:"新しいパスワードを入力してください", value: @new %>
+						</li>
+						<li>
+							<%= label :user, :confpassword, "新しいパスワード (確認用)", class: "label-text" %>
+							<%= password_field :user, :confpassword, class:"input-mypage-text", placeholder:"確認のため、もう一度入力してください", value: @conf %>
+						</li>
+					</ul>
+					<hr>
+					<div class="btn-area"><div class="btn-area"><%= submit_tag( "戻る", class: "btn-white", name: "btn-back") %><%= submit_tag( "設定", class: "btn-yellow", name: "btn-edit") %></div></div>
+				<% end %>
+			</section>
+			<section class="terms-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</article>
+	</main>
+	<%= render "application/side" %>
+</div>
+
+<script type="text/javascript">
+$(function(){
+
+	// 実行するSubmitボタンを設定
+	setEnterSubmitButton( "input[name='user[nowpassword]']", "input[name='btn-edit']");
+	setEnterSubmitButton( "input[name='user[newpassword]']", "input[name='btn-edit']");
+	setEnterSubmitButton( "input[name='user[confpassword]']", "input[name='btn-edit']");
+
+});
+</script>

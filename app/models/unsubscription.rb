@@ -1,0 +1,2 @@
+class Unsubscription < ApplicationRecord
+end

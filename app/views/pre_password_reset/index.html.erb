@@ -1,0 +1,25 @@
+<div class="single-wrapper">
+	<header>
+		<p id="logo"><%= image_tag 'common/logo.svg', alt:'Yellow' %></p>
+	</header>
+	<main class="register-content">
+		<h1 class="title-reset-password">パスワードリセット</h1>
+		<hr>
+		<p class="text-complete">登録しているメールアドレスを入力してください。<br>申請を行うと、ご入力頂いたメールアドレスへパスワードリセットを行うページのURLを送信します。</p>
+		<%= form_tag({action: :complete}) do %>
+			<% unless @message.blank? %>
+				<p class="text-error"><%= @message %></p>
+			<% end %>
+			<ul>
+				<li>
+					<%= label :user, "email", "メールアドレス", class: "label-text" %>
+					<%= email_field :user, :email, placeholder:"sample@gray-code.com", class:"input-text", value: @email %>
+				</li>
+			</ul>
+			<div class="btn-area"><%= submit_tag( "キャンセル", class: "btn-white", name: "btn-back") %><%= submit_tag( "リセット申請", class: "btn-yellow", name: "btn-entry") %></div>
+		<% end %>
+	</main>
+	<section class="single-ad-space">
+		<%= render 'application/singlead' %>
+	</section>
+</div>
