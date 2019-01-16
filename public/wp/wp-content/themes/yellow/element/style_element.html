@@ -1,0 +1,49 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>下記の属性に加え、グローバル属性を指定することもできます。</p>
+		</dd>
+		<dt>media</dt>
+		<dd>
+			<p>スタイルを適用するメディアを指定します。</p>
+		</dd>
+		<dt>type</dt>
+		<dd>
+			<p>スタイルシートのMIMEタイプを指定します。省略した場合は初期値の「text/css」となります。</p>
+		</dd>
+		<dt>scoped</dt>
+		<dd>
+			<p>スタイルを特定範囲のみに適用させたい場合に使用します。この属性を指定した場合、style要素の親要素に限定した範囲でスタイルを適用することができます。<strong>ただし、現時点（2016年1月15日）ではFirefoxのバージョン21以降のみの対応となっています。</strong></p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;body&gt;
+&lt;main&gt;
+	&lt;style scoped="scoped"&gt;
+	&lt;/style&gt;
+		main {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background: #eee;
+		}
+		
+		main h1 {
+			color: #c00;
+		}
+	&lt;h1&gt;style要素のサンプルコード&lt;/h1&gt;
+	&lt;p&gt;今回のソースコードの場合、親要素であるmain要素の中に限定してスタイルを適用します。&lt;/p&gt;
+&lt;/main&gt;
+&lt;main&gt;
+	&lt;p&gt;こちらのmain要素にはスタイルが適用されません。&lt;/p&gt;
+&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+	</div>
+	<p class="text_caption">Firefoxで表示すると次のようになります。</p>
+	<p class="pic"></p>
+</section>

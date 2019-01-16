@@ -1,0 +1,136 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>下記の属性に加え、グローバル属性を指定することもできます。</p>
+		</dd>
+		<dt>href</dt>
+		<dd>
+			<p>リンク先となるURLを指定します。</p>
+		</dd>
+		<dt>target</dt>
+		<dd>
+			<p>リンク先となるURLを指定します。</p>
+			<ul>
+				<li>
+					<h3>_self</h3>
+					<p>href属性に指定したリンクを現在のブラウズ・コンテキストへ展開します。target属性が指定されていない場合は、初期値として自動的にこの値が設定されます。</p>
+				</li>
+				<li>
+					<h3>_blank</h3>
+					<p>新しいブラウジングコンテキストへ展開します。<br>タブブラウザであれば、新しいタブを開いて展開。</p>
+				</li>
+				<li>
+					<h3>_parent</h3>
+					<p>現在の親ブラウズ・コンテキストへ展開します。親要素がない場合、_selfと同じ動作になります。</p>
+				</li>
+				<li>
+					<h3>_top</h3>
+					<p>href属性にしたリンクをトップレベルのブラウズ・コンテキストで開きます。親要素がない場合、_selfと同じ動作になります。</p>
+				</li>
+			</ul>
+		</dd>
+		<dt>rel</dt>
+		<dd>
+			<p>現在のページに対する、リンク先のページとの関係を指定します。半角スペースで区切り、複数の値を指定することもできます。原文は<a href="https://www.w3.org/TR/html5/links.html#rel-alternate" target="_blank">W3Cのこちらのページ</a>にまとまっています。</p>
+			<ul>
+				<li>
+					<h3>alternate</h3>
+					<p>現在のページの代替文書を参照するリンクである場合に指定。別途type属性と組み合わせて使用</p>
+				</li>
+				<li>
+					<h3>author</h3>
+					<p>href属性で「mailto」や「tel」など、著者情報を指定する場合に使用</p>
+				</li>
+				<li>
+					<h3>bookmark</h3>
+					<p>現在のページと関連性の近いページへリンクを貼る場合に使用</p>
+				</li>
+				<li>
+					<h3>help</h3>
+					<p>ヘルプページへのリンクなど、閲覧者へヒントを提供するページへのリンクを設定する場合に使用</p>
+				</li>
+				<li>
+					<h3>icon</h3>
+					<p>現在のページ、またはサイトのアイコンを指定する場合に使用</p>
+				</li>
+				<li>
+					<h3>license</h3>
+					<p>利用規約などのライセンスに関するリンクを指定する場合に使用</p>
+				</li>
+				<li>
+					<h3>nofollow</h3>
+					<p>リンク先のページが重要でないことを表します。外部サイトへのリンクに対して指定することで、SEO的には「リンク先と現在のページに重要な関係がない」と示すことになり、現在のドメインを集中して評価して欲しい時に指定する値です。<strong>rel属性において最も頻繁に使用される値です。</strong></p>
+				</li>
+				<li>
+					<h3>noreferrer</h3>
+					<p>ユーザがリンク先へ移動する際に、リファラを送信しないよう指定する場合に使用</p>
+				</li>
+				<li>
+					<h3>prefetch</h3>
+					<p>リンク先のリソースを予めキャッシュして保持したい場合に使用</p>
+				</li>
+				<li>
+					<h3>search</h3>
+					<p>検索関連のリンクである場合に使用</p>
+				</li>
+				<li>
+					<h3>tag</h3>
+					<p>リンク先のタグを現在のページで用いる場合に使用</p>
+				</li>
+				<li>
+					<h3>next</h3>
+					<p>リンク先のページが、現在のページの続きという関係の場合に指定</p>
+				</li>
+				<li>
+					<h3>prev</h3>
+					<p>リンク先のページが、現在のページの前ページという連続した関係にある場合に指定</p>
+				</li>
+			</ul>
+		</dd>
+		<dt>hreflang</dt>
+		<dd>
+			<p>リンク先の言語を指定します。例えばリンク先が英語で記述されたページであれば「en」、日本語だったら「ja」というように指定します。</p>
+		</dd>
+		<dt>media</dt>
+		<dd>
+			<p>リンク先リソースの該当するメディアを指定します。PCなどのディスプレイであれば「screen」、テレビであれば「tv」、モバイルデバイスであれば「handheld」など。</p>
+		</dd>
+		<dt>type</dt>
+		<dd>
+			<p>リンク先のMIMEタイプを指定します。HTMLファイルであれば「text/html」、PDFファイルは「application/pdf」など。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>リンク先を指定</h3>
+	<pre class="code_box"><code class="html">&lt;p&gt;最もポピュラーな&lt;a href="http://sample-code.com" target="_blank"&gt;使用例&lt;/a&gt;&lt;/p&gt;</code></pre>
+	<p class="code_caption">最もよく使用する例です。pタグやh1タグといったフレージングコンテンツの中、またはdivタグやliタグなどのフローコンテンツの中に記述します。<br>上記コードではhref属性でリンク先を指定することに加え、target属性から新しいブラウジングコンテンツとして展開するよう指定しています。</p>
+
+	<h3>指定した場所へのアンカーを指定</h3>
+	<pre class="code_box"><code class="html">&lt;p&gt;ページ内の&lt;a href="#top1"&gt;アンカー&lt;/a&gt;&lt;/p&gt;</code></pre>
+	<p class="code_caption">ページ内、またはリンク先のページにおいて、指定した要素を先頭にして表示したい場合に使用します。<br>要素のid属性のみを指定することができ、移動先id属性の頭に「#（シャープ）」を付けて指定します。<br>別ページのアンカーを指定したい場合は、アンカーの前にリンク先URLを書くことで指定可能です。</p>
+
+	<h3>広いリンクを設定</h3>
+	<pre class="code_box"><code class="html">&lt;ul&gt;
+	&lt;li&gt;
+		&lt;a href="#"&gt;
+			&lt;section class=""&gt;
+				&lt;div class="text_content"&gt;
+					&lt;h2&gt;魔法の世紀&lt;/h2&gt;
+					&lt;p&gt;落合陽一さんの考える、21世紀の世界を垣間見ることのできる一冊。あらすじを紹介しながら、読み進めていく中で自分なりに感じたことをまとめました。&lt;/p&gt;
+					&lt;div class="info_wrap"&gt;
+						&lt;time&gt;2016.01.08&lt;/time&gt;
+						&lt;p&gt;本&lt;/p&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="pic_thumbnail"&gt;&lt;img src="" alt="サムネイル画像"&gt;&lt;/div&gt;
+			&lt;/section&gt;
+		&lt;/a&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+	<p class="code_caption">スマホやタブレットで閲覧するときのために、リンクを広くしタッチ領域を広く取りたいことがあります。そのようなときにも、a要素を使うことができます。ただし、a要素の中にa要素を入れ子にしたり、button要素を入れるなど、インタラクティブコンテンツを含めることはできません。</p>
+</section>

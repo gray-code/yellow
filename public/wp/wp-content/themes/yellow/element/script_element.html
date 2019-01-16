@@ -1,0 +1,29 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>下記の属性に加え、グローバル属性を指定することもできます。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>JavaScriptが無効な環境でのみ、スタイルシートを読み込んでメッセージを表示する</h3>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;html lang="ja"&gt;
+&lt;head&gt;
+	&lt;!-- JavaScriptが無効な場合のみ、スタイルシートを読み込む --&gt;
+	&lt;noscript&gt;
+		&lt;link rel="stylesheet" href="noscript.css"&gt;
+	&lt;/noscript&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;noscript&gt;&lt;p&gt;JavaScriptを有効にしてください。&lt;/p&gt;&lt;/noscript&gt;
+&lt;script type="text/javascript" src="js/sample.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+	</div>
+</section>
+

@@ -1,0 +1,68 @@
+<div class="wrapper">
+	<main class="main-content">
+		<article class="main-wrap">
+			<h1 class="title-account">退会</h1>
+			<section class="mypage-base account-edit-base">
+				<p class="text-message">退会の申請を行います。<br>退会申請が行われますと、申請後1ヶ月が経過した時点で今までご登録頂きましたデータを完全に削除いたします。<br>今までに入力したデータのバックアップを取得される場合は、各帳簿よりダウンロードした上で退会申請を行ってください。</p>
+				<p class="text-link"><a href="/account/">アカウント設定ページ</a></p>
+				<hr class="unsubscription-line">
+				<%= form_tag(action: :complete) do %>
+					<% unless @message.blank? %>
+						<p class="text-error"><%= @message %></p>
+					<% end %>
+					<ul>
+						<li>
+							<%= label :user, :password, "現在お使いのパスワード <span class='icon-required'>※</span>".html_safe, class: "label-text" %>
+							<%= password_field :user, :password, class:"input-mypage-text", placeholder:"パスワードを入力してください", value: @pass %>
+						</li>
+						<li>
+						<p><%=  %></p>
+							<%
+							radio_check1 = ''
+							radio_check2 = ''
+							radio_check3 = ''
+							radio_check4 = ''
+							radio_check5 = ''
+							radio_check6 = ''
+
+							case @reason.to_i
+							when 1
+								radio_check1 = 'checked'
+							when 2
+								radio_check2 = 'checked'
+							when 3
+								radio_check3 = 'checked'
+							when 4
+								radio_check4 = 'checked'
+							when 5
+								radio_check5 = 'checked'
+							when 6
+								radio_check6 = 'checked'
+							else
+								radio_check1 = 'checked'
+							end
+							%>
+							<h2 class="label-input">退会理由 <span class="icon-required">※</span></h2>
+							<label class="label-radio" for="user_reason_1"><%= radio_button :user, :reason, 1, class: "input-radio", checked: radio_check1 %>使いにくい、使い方が分からない</label>
+							<label class="label-radio" for="user_reason_2"><%= radio_button :user, :reason, 2, class: "input-radio", checked: radio_check2 %>他の経理アプリを使うことにした</label>
+							<label class="label-radio" for="user_reason_3"><%= radio_button :user, :reason, 3, class: "input-radio", checked: radio_check3 %>役に立たない</label>
+							<label class="label-radio" for="user_reason_4"><%= radio_button :user, :reason, 4, class: "input-radio", checked: radio_check4 %>自分で経理をする必要がなくなった</label>
+							<label class="label-radio" for="user_reason_5"><%= radio_button :user, :reason, 5, class: "input-radio", checked: radio_check5 %>仕訳の方法が分からない</label>
+							<label class="label-radio" for="user_reason_6"><%= radio_button :user, :reason, 6, class: "input-radio", checked: radio_check6 %>その他</label>
+						</li>
+						<li>
+							<%= label :user, :comment, "その他、ご意見などございましたらご入力ください (任意)", class: "label-text" %>
+							<%= text_area :user, :comment, class: "input-mypage-textarea", value: @comment %>
+						</li>
+					</ul>
+					<hr>
+					<div class="btn-area"><%= submit_tag( "戻る", class: "btn-white", name: "btn-back") %><%= submit_tag( "退会する", class: "btn-yellow", name: "btn-unsubscription") %></div>
+				<% end %>
+			</section>
+			<section class="terms-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</article>
+	</main>
+	<%= render "application/side" %>
+</div>

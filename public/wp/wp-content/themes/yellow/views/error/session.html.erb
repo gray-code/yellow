@@ -1,0 +1,18 @@
+<div class="single-wrapper">
+	<header>
+		<p id="logo"><%= image_tag 'common/logo.svg', alt:'Yellow' %></p>
+	</header>
+	<main class="register-content">
+		<h1>アカウント登録</h1>
+		<ul class="flow-list">
+			<li><span>1</span>仮登録</li><li><span class="current-flow">2</span>メール確認</li><li><span>3</span>本登録</li>
+		</ul>
+		<form method="post" action="">
+			<p class="text-error">申し訳ございません。<br>こちらのリンクは既に無効になっております。<br>大変恐れ入りますが、再度アカウント登録を行ってください。</p>
+			<div class="btn-area"><a class="btn-white" href="/pre-register/">アカウント登録</a></div>
+		</form>
+	</main>
+	<section class="single-ad-space">
+		<%= render 'application/singlead' %>
+	</section>
+</div>

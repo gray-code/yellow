@@ -1,0 +1,38 @@
+<header id="header">
+	<div class="header-wrap">
+		<figure id="logo"><a href="/book/"><%= image_tag 'common/logo.svg', alt:'Yellow' %></a></figure>
+		<nav id="global-navigation">
+			<ul>
+				<li><a href="/book/">仕訳帳</a></li>
+				<li><a href="/book/ledger/">総勘定元帳</a></li>
+				<li><a href="/book/balancecalc/">残高試算表</a></li>
+			</ul>
+		</nav>
+		<div class="button-area">
+			<a class="btn" href="/account">アカウント設定</a><a class="btn" href="/logout">ログアウト</a>
+		</div>
+		<div class="personal-area">
+			<p class="user-name"><%= session['user']['u_name'] %></p>
+			<p class="last-login-time">最終更新日：<time datetime="2017-02-10 00:00:00">2017年02月10日</time></p>
+		</div>
+		<div id="btn-menu"><a href="#"><span></span></a></div>
+	</div>
+	<div id="sp-navigation">
+		<div class="personal-area">
+			<p class="user-name"><%= session['user']['u_name'] %></p>
+			<p class="last-login-time">最終更新日：<time datetime="2017-02-10 00:00:00">2017年02月10日</time></p>
+		</div>
+		<nav>
+			<ul class="sp-menu">
+				<li><a href="/book/">仕訳帳</a></li>
+				<li><a href="/book/ledger/">総勘定元帳</a></li>
+				<li><a href="/book/balancecalc/">残高試算表</a></li>
+			</ul>
+			<ul>
+				<li><a class="btn" href="/account">アカウント設定</a></li>
+				<li><a class="btn" href="/logout">ログアウト</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+<div id="sp-back-sheet"></div>

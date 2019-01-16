@@ -1,0 +1,18 @@
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^$ /index.php [L]
+RewriteRule ^yellow44gate\.php [L]
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^document/ /index.php [L]
+RewriteRule ^business-owner/ /index.php [L]
+RewriteRule ^tax-return/ /index.php [L]
+RewriteRule ^terms/ /index.php [L]
+RewriteRule ^privacy\-policy/ /index.php [L]
+</IfModule>
+# END WordPress
+
+#RewriteRule ^documenty /index.php [L]

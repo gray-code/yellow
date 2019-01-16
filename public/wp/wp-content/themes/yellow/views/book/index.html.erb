@@ -1,0 +1,184 @@
+<div class="wrapper">
+	<main class="main-content book-content">
+		<div id="popup-message" class="popup-message">
+			<p><span id="message-content">新しい仕訳を登録しました。</span><a href="#">&times;</a></p>
+		</div>
+		<div class="main-wrap">
+			<h1>仕訳帳</h1>
+			<nav>
+				<a id="btn-add" class="btn-add-entry" href="#">&plus;</a>
+				<%= select :entry, :viewdate, @select_date_list, { include_blank: nil, selected: @selected} %>
+				
+				<div class="pagination-area">
+					<a class="btn-prev" href="/book/?t=<%= @prev_month.year.to_s + @prev_month.strftime("%m") %>"></a><a class="btn-next" href="/book/?t=<%= @next_month.year.to_s + @next_month.strftime("%m") %>"></a>
+				</div>
+			</nav>
+			<table id="book-table">
+				<tr>
+					<th class="cell-top-left th-date">日付</th><th class="th-debit">借方</th><th class="th-credit">貸方</th><th class="th-receipt">領収書</th><th class="cell-top-right cell-right">摘要</th>
+				</tr>
+				<% if 0 < @entry_data.size %>
+					<% @entry_data.each do |data| %>
+						<tr>
+							<td class="cell-date"><%= data.a_date.day %>日</td>
+							<td class="cell-debit">
+								<ul>
+								<% 5.times do |i|
+	
+									# Initialize
+									item_data = ''
+									item_name = ''
+									item_number = ''
+	
+									array_index = i+1
+	
+									unless data["a_debit_id#{array_index}"].blank?
+										
+										item_data = Item.find(data["a_debit_id#{array_index}"])
+										item_name = item_data.i_label
+										item_number = data["a_debit_money#{array_index}"]
+									end
+									
+									unless item_name.blank? %>
+										<li><%= item_name %> <samp>¥<%= item_number.to_s(:delimited, delimiter: ',') %></samp>
+										<input type="hidden" name="debit_id<%= array_index %>" value="<%= data["a_debit_id#{array_index}"] %>">
+										<input type="hidden" name="debit_number<%= array_index %>" value="<%= item_number %>">
+										</li>
+									<% end %>
+								<% end %>
+								</ul>
+							</td>
+							<td class="cell-credit">
+								<ul>
+								<% 5.times do |i|
+	
+									# Initialize
+									item_data = ''
+									item_name = ''
+									item_number = ''
+									array_index = i+1
+	
+									unless data["a_credit_id#{array_index}"].blank?
+	
+										# 項目名を取得
+										item_data = Item.find(data["a_credit_id#{array_index}"])
+	
+										item_name = item_data.i_label
+										item_number = data["a_credit_money#{array_index}"]
+									end
+									
+									unless item_name.blank? %>
+										<li><%= item_name %> <samp>¥<%= item_number.to_s(:delimited, delimiter: ',') %></samp>
+										<input type="hidden" name="credit_id<%= array_index %>" value="<%= data["a_credit_id#{array_index}"] %>">
+										<input type="hidden" name="credit_number<%= array_index %>" value="<%= item_number %>">
+										</li>
+									<% end %>
+								<% end %>
+								</ul>
+							</td>
+							<td class="cell-receipt">
+								<% unless data["a_receipt1"].blank? %>
+									<%= image_tag 'common/icon-check.png', alt:'アップロード済' %>
+								<% else %>
+									<%= image_tag 'common/icon-non-check.png', alt:'未アップロード' %>
+								<% end %>
+							</td>
+							<td class="cell-right cell-memo"><a class="link-edit" href="#"><%= image_tag 'common/icon-arrow-edit.png' %></a>								<% unless data["a_memo"].blank? %>
+								<%= data["a_memo"] %>
+							<% end %>
+							<input type="hidden" name="entry_id" value="<%= data["id"] %>">
+							<input type="hidden" name="entry_date" value="<%= data["a_date"].strftime("%Y年%m月%d日") %>">
+							<input type="hidden" name="entry_memo" value="<%= data["a_memo"] %>">
+							</td>
+						</tr>
+					<% end %>
+				<% else %>
+					<tr><td class="cell-empty" colspan="5">仕訳データがありません</td></tr>
+				<% end %>
+			</table>
+
+			<nav class="bottom-nav-area">
+				<a id="btn-add-bottom" class="btn-add-entry" href="#">&plus;</a>
+				<div class="pagination-area">
+					<a class="btn-prev" href="/book/?t=<%= @prev_month.year.to_s + @prev_month.strftime("%m") %>"></a><a class="btn-next" href="/book/?t=<%= @next_month.year.to_s + @next_month.strftime("%m") %>"></a>
+				</div>
+			</nav>
+			<section class="main-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</div>
+	</main>
+	<%= render 'application/side' %>
+
+	<div id="back-sheet">
+		<section id="add-entry" class="middle-window">
+			<h2>仕訳登録</h2>
+			<a class="btn-close btn-entry-close-action" href="#">&times;</a>
+			<%= form_tag(action: :entry) do %>
+			<ul id="error-entry-text" class="list-error"></ul>
+			<div class="input-title-area">
+				<p>借方</p><p>貸方</p>
+			</div>
+			<ul class="entry-area">
+				<li class="entry-list1">
+					<div class="debit-input-area"><%= select :entry, :debit_item1, @debit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :debit_number1, placeholder: "100", class:"input-text-white", min: 0, value: @debit_number1 %></div>
+					<div class="credit-input-area"><%= select :entry, :credit_item1, @credit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :credit_number1, placeholder: "100", class:"input-text-white", min: 0, value: @credit_number1 %></div>
+				</li>
+				<li class="entry-list2">
+					<div class="debit-input-area"><%= select :entry, :debit_item2, @debit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :debit_number2, placeholder: "100", class:"input-text-white", min: 0, value: @debit_number2 %></div>
+					<div class="credit-input-area"><%= select :entry, :credit_item2, @credit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :credit_number2, placeholder: "100", class:"input-text-white", min: 0, value: @credit_number2 %></div>
+				</li>
+				<li class="entry-list3">
+					<div class="debit-input-area"><%= select :entry, :debit_item3, @debit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :debit_number3, placeholder: "100", class:"input-text-white", min: 0, value: @debit_number3 %></div>
+					<div class="credit-input-area"><%= select :entry, :credit_item3, @credit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :credit_number3, placeholder: "100", class:"input-text-white", min: 0, value: @credit_number3 %></div>
+				</li>
+				<li class="entry-list4">
+					<div class="debit-input-area"><%= select :entry, :debit_item4, @debit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :debit_number4, placeholder: "100", class:"input-text-white", min: 0, value: @debit_number4 %></div>
+					<div class="credit-input-area"><%= select :entry, :credit_item4, @credit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :credit_number4, placeholder: "100", class:"input-text-white", min: 0, value: @credit_number4 %></div>
+				</li>
+				<li class="entry-list5">
+					<div class="debit-input-area"><%= select :entry, :debit_item5, @debit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :debit_number5, placeholder: "100", class:"input-text-white", min: 0, value: @debit_number5 %></div>
+					<div class="credit-input-area"><%= select :entry, :credit_item5, @credit_items, { include_blank: '----'}, class:"input-select-white" %><%= number_field :entry, :credit_number5, placeholder: "100", class:"input-text-white", min: 0, value: @credit_number5 %></div>
+				</li>
+			</ul>
+			<section class="total-number-area">
+				<p class="debit-total">¥<samp id="debit-total-num">0</samp></p>
+				<div id="balance-check" class=""></div>
+				<p class="credit-total">¥<samp id="credit-total-num">0</samp></p>
+			</section>
+			<section class="other-input-area">
+				<h3 class="title-memo">日付</h3>
+				<input id="btn-add-date" type="datetime" class="input-select-white" name="entry[date]" value="">
+				<h3 class="title-memo">摘要</h3>
+				<%= text_area :entry, :memo, class:"input-textarea-white", placeholder: "支出の説明テキストを入力してください" %>
+<!--
+				<h3 class="title-upload-file">領収書の画像ファイル</h3>
+				<div class="receipt-upload-area">
+					<div><label for="entry_receipt1">ファイル1：<%= file_field :entry, :receipt1 %></label></div>
+					<div><label for="entry_receipt2">ファイル2：<%= file_field :entry, :receipt2 %></label></div>
+					<div><label for="entry_receipt3">ファイル3：<%= file_field :entry, :receipt3 %></label></div>
+				</div>
+-->
+				<div class="btn-area">
+					<a id="btn-cancel" class="btn-white btn-entry-close-action" href="#">キャンセル</a><a id="btn-submit-entry" class="btn-yellow" href="#">登録</a>
+					<%= hidden_field :entry, :editid %>
+				</div>
+			</section>
+			<% end %>
+		</section>
+		<section id="delete-entry" class="little-window">
+			<a class="btn-close btn-delete-close-action" href="#">&times;</a>
+			<%= form_tag(action: :entrydelete) do %>
+			<p class="text-window-name">仕訳の削除</p>
+			<hr>
+			<p id="error-book-delete-text" class="text-error">こちらの仕訳は削除できません。</p>
+			<p class="text-message">削除してもよろしいですか？</p>
+			<hr>
+			<div class="btn-area">
+				<a class="btn-white btn-delete-cancel btn-delete-close-action" href="#">閉じる</a><a id="btn-delete-entry" class="btn-yellow" href="#">削除</a>
+			</div>
+			<%= hidden_field :entry, :deleteid, id: "delete_entry_id" %>
+			<% end %>
+		</section>
+	</div>
+</div>

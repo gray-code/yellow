@@ -1,0 +1,47 @@
+<div class="wrapper">
+	<main class="main-content">
+		<div id="popup-message" class="popup-message">
+			<p><span id="message-content">新しい仕訳を登録しました。</span><a href="#">&times;</a></p>
+		</div>
+		<article class="main-wrap">
+			<h1 class="title-account">メールアドレス変更</h1>
+			<section class="mypage-base account-edit-base">
+				<%= form_tag(action: :emailedit) do %>
+					<% unless @message.blank? %>
+						<p class="text-error"><%= @message %></p>
+					<% end %>
+					<ul>
+						<li>
+							<%= label :user, "email", "現在設定しているメールアドレス", class: "label-text" %>
+							<%= text_field :user, "old-email", class:"input-mypage-text", value: @now_email, disabled: true %>
+						</li>
+						<li>
+							<%= label :user, "email", "新しいメールアドレス", class: "label-text" %>
+							<%= email_field :user, :email, placeholder:"sample@gray-code.com", class:"input-mypage-text", value: @email %>
+						</li>
+						<li>
+							<%= label :user, "email", "新しいメールアドレス (確認用)", class: "label-text" %>
+							<%= email_field :user, "conf-email", placeholder:"確認のため、もう一度入力してください", class:"input-mypage-text", value: @emailconf %>
+						</li>
+					</ul>
+					<hr>
+					<div class="btn-area"><%= submit_tag( "戻る", class: "btn-white", name: "btn-back") %><%= submit_tag( "設定", class: "btn-yellow", name: "btn-edit") %></div>
+				<% end %>
+			</section>
+			<section class="terms-ad-space">
+				<%= render 'application/ad' %>
+			</section>
+		</article>
+	</main>
+	<%= render "application/side" %>
+</div>
+
+<script type="text/javascript">
+$(function(){
+
+	// 実行するSubmitボタンを設定
+	setEnterSubmitButton( "input[name='user[email]']", "input[name='btn-edit']");
+	setEnterSubmitButton( "input[name='user[conf-email]']", "input[name='btn-edit']");
+
+});
+</script>

@@ -1,0 +1,17 @@
+<div class="single-wrapper">
+	<header>
+		<p id="logo"><%= image_tag 'common/logo.svg', alt:'Yellow' %></p>
+	</header>
+	<main class="register-content">
+		<h1 class="title-reset-password">パスワードリセット</h1>
+		<hr>
+		<p class="text-complete">ご入力頂きましたメールアドレスへ、パスワード再設定ページのURLを送信しました。<br>そちらのページより、パスワードリセットを行ってください。</p>
+		<p class="text-complete">しばらくしてもメールが届かない場合、<br>大変恐れ入りますが改めてパスワードリセットの申請を行ってください。</p>
+		<div class="btn-area">
+			<p class="text-link"><a href="/login">トップページへ</a></p>
+		</div>
+	</main>
+	<section class="single-ad-space">
+		<%= render 'application/singlead' %>
+	</section>
+</div>

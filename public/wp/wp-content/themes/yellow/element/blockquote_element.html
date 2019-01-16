@@ -1,0 +1,36 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>グローバル属性のみ使用することができます。</p>
+		</dd>
+		<dt>cite</dt>
+		<dd>
+			<p>引用元がWebページであれば、こちらの属性でURLを指定することができます。書籍の場合はISBNコードを「url:isbn:ISBNコード」で指定することができます。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>ブログの記事ページを想定したサンプルコード</h3>
+	<p>次のHTMLコードは、記事ページの中で他ページからの引用を使った場合の例です。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;article&gt;
+	&lt;header&gt;
+		&lt;h1&gt;Kindleはとても便利&lt;/h1&gt;
+		&lt;p&gt;&lt;b class="lead"&gt;amazonが出しているKindle。電子書籍リーダーと聞いて、「Kindle（キンドル）」を想像される方も多いのではないでしょうか。&lt;br&gt;今回はそのKindleの基本的な使い方を紹介していきます。&lt;/b&gt;&lt;/p&gt;
+	&lt;/header&gt;
+	&lt;section&gt;
+		&lt;h2&gt;電子書籍の買い方&lt;/h2&gt;
+		&lt;p&gt;Kindleを購入したら、まずは電子書籍を手に入れる必要があります。&lt;/p&gt;
+		&lt;p&gt;...本文...&lt;/p&gt;
+		&lt;p&gt;下記のページにおいても、次のように紹介されています。&lt;br&gt;一部抜粋&lt;/p&gt;
+		&lt;blockquote cite="url:https://gray-code.com/blog/book/%E9%9B%BB%E5%AD%90%E6%9B%B8%E7%B1%8D%E3%83%AA%E3%83%BC%E3%83%80%E3%83%BC%E3%80%8Ckindle%E3%80%8D%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC/"&gt;
+			&lt;p&gt;入門用として手にしたkindleですが、上記の通り使い勝手が良く大変重宝しています。&lt;br&gt;最初の電子書籍リーダーとして「kindle」は間違いないと思います。&lt;/p&gt;
+		&lt;/blockquote&gt;
+	&lt;/section&gt;
+&lt;/article&gt;</code></pre>
+	</div>
+</section>

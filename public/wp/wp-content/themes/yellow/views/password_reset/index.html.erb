@@ -1,0 +1,30 @@
+<div class="single-wrapper">
+	<header>
+		<p id="logo"><%= image_tag 'common/logo.svg', alt:'Yellow' %></p>
+	</header>
+	<main class="register-content">
+		<h1 class="title-reset-password">パスワードリセット</h1>
+		<hr>
+		<p class="text-404-message">新しいパスワードを入力してください。</p>
+		<%= form_tag(action: :complete) do %>
+			<% unless @message.blank? %>
+				<p class="text-error"><%= @message %></p>
+			<% end %>
+			<ul>
+				<li>
+					<%= label :user, :newpassword, "新しいパスワード (半角英数、8字以上20字以内)", class: "label-text" %>
+					<%= password_field :user, :newpassword, class:"input-text", placeholder:"新しいパスワードを入力してください", value: @new %>
+				</li>
+				<li>
+					<%= label :user, :confpassword, "新しいパスワード (確認用)", class: "label-text" %>
+					<%= password_field :user, :confpassword, class:"input-text", placeholder:"確認のため、もう一度入力してください", value: @conf %>
+				</li>
+			</ul>
+			<%= hidden_field :user, :id, value: @user_id %>
+			<div class="btn-area"><%= submit_tag( "キャンセル", class: "btn-white", name: "btn-back") %><%= submit_tag( "パスワードリセット", class: "btn-yellow", name: "btn-edit") %></div>
+		<% end %>
+	</main>
+	<section class="single-ad-space">
+		<%= render 'application/singlead' %>
+	</section>
+</div>

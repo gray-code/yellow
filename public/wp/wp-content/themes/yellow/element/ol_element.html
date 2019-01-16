@@ -1,0 +1,108 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>グローバル属性のみ使用することができます。</p>
+		</dd>
+		<dt>reversed</dt>
+		<dd>
+			<p>並びを降順にします。最後から最初に向かった並び（3,2,1）としたい場合に指定します。<strong>reversed属性は論理属性なので、属性が書かれているだけで機能します。そのため、値の指定は必須ではありません。</strong></p>
+		</dd>
+		<dt>start</dt>
+		<dd>
+			<p>スタートする番号を指定します。例えば「3」を指定した場合は「3、4、5...」となり、reversed属性が指定されていた場合は「3、2、1」となります。</p>
+		</dd>
+		<dt>type</dt>
+		<dd>
+			<p>li要素の左側に表示されるマーカーのタイプを指定します。次の中から選択することができます。ブラウザの表示例については「使用例」を参考にしてください。</p>
+			<ul>
+				<li>
+					<h3>type="1"</h3>
+					<p>「1、2、3...」と数字を使うタイプ</p>
+				</li>
+				<li>
+					<h3>type="a"</h3>
+					<p>「a、b、c」と英小文字を使うタイプ</p>
+				</li>
+				<li>
+					<h3>type="A"</h3>
+					<p>「A、B、C」と英大文字を使うタイプ</p>
+				</li>
+				<li>
+					<h3>type="i"</h3>
+					<p>「i、ii、iii」と小文字のローマ数字を使うタイプ</p>
+				</li>
+				<li>
+					<h3>type="I"</h3>
+					<p>「I、II、III」と大文字のローマ数字を使うタイプ</p>
+				</li>
+			</ul>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>様々なリストタイプ</h3>
+	<p>type属性に様々な値を設定したサンプルコードです。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;article&gt;
+
+	&lt;!-- 指定しない（初期設定）、またはtype="1"を指定 --&gt;
+	&lt;ol&gt;
+		&lt;li&gt;一つ目&lt;/li&gt;
+		&lt;li&gt;二つ目&lt;/li&gt;
+		&lt;li&gt;三つ目&lt;/li&gt;
+	&lt;/ol&gt;
+
+	&lt;!-- type="a"を指定 --&gt;
+	&lt;ol type="a"&gt;
+		&lt;li&gt;一つ目&lt;/li&gt;
+		&lt;li&gt;二つ目&lt;/li&gt;
+		&lt;li&gt;三つ目&lt;/li&gt;
+	&lt;/ol&gt;
+	
+	&lt;!-- type="A"を指定 --&gt;
+	&lt;ol type="A"&gt;
+		&lt;li&gt;一つ目&lt;/li&gt;
+		&lt;li&gt;二つ目&lt;/li&gt;
+		&lt;li&gt;三つ目&lt;/li&gt;
+	&lt;/ol&gt;
+
+	&lt;!-- type="i"を指定 --&gt;
+	&lt;ol type="i"&gt;
+		&lt;li&gt;一つ目&lt;/li&gt;
+		&lt;li&gt;二つ目&lt;/li&gt;
+		&lt;li&gt;三つ目&lt;/li&gt;
+	&lt;/ol&gt;
+
+	&lt;!-- type="i"を指定 --&gt;
+	&lt;ol type="I"&gt;
+		&lt;li&gt;一つ目&lt;/li&gt;
+		&lt;li&gt;二つ目&lt;/li&gt;
+		&lt;li&gt;三つ目&lt;/li&gt;
+	&lt;/ol&gt;
+&lt;/article&gt;</code></pre>
+	</div>
+	<p class="text_caption">ブラウザでの表示例</p>
+	<p class="pic"></p>
+
+	<h3>順序を逆にしたリスト</h3>
+	<p>reversed属性を指定し、並び順を降順にした例です。<br>2つ目ではstart属性を指定している点にも注目してください。リストタイプが英字でも、start属性は数値で渡す必要があります。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;ol reversed&gt;
+	&lt;li&gt;一つ目&lt;/li&gt;
+	&lt;li&gt;二つ目&lt;/li&gt;
+	&lt;li&gt;三つ目&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ol type="a" start="7" reversed&gt;
+	&lt;li&gt;一つ目&lt;/li&gt;
+	&lt;li&gt;二つ目&lt;/li&gt;
+	&lt;li&gt;三つ目&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+	</div>
+	<p class="text_caption">ブラウザでの表示例</p>
+	<p class="pic"></p>
+</section>

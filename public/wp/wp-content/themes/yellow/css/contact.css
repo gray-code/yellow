@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+
+.main_content a {
+	color: #0090ff;
+}
+
+.main_content header h2 {
+	margin-bottom: 26px;
+	padding: 30px 0;
+	color: #555;
+	font-size: 150%;
+	font-weight: normal;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+.main_content header p {
+	margin-bottom: 45px;
+	font-size: 86%;
+	line-height: 1.6em;
+}
+
+
+.main_content dl dt {
+	margin-bottom: 10px;
+	padding: 3px 0 5px 20px;
+	color: #555;
+	font-weight: bold;
+	border-left: 2px solid #0090ff;
+}
+
+.main_content dl dt span {
+	color: #c00;
+	font-size: 115%;
+}
+
+.main_content dl dd {
+	margin-bottom: 30px;
+	padding-left: 22px;
+	font-size: 86%;
+	line-height: 1.6em;
+}
+
+.main_content dl dd select {
+	font-size: 100%;
+}
+
+.main_content dl dd input,
+.main_content dl dd textarea {
+	padding: 7px 10px;
+	border: none;
+	color: #555;
+	font-size: 100%;
+	background: #ddd;
+}
+
+.main_content dl dd .input_long {
+	width: 280px;
+}
+
+.main_content dl dd textarea {
+	width: 380px;
+	height: 85px;
+	line-height: 1.6em;
+}
+
+.main_content .btn_area {
+	padding: 50px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	text-align: center;
+}
+
+.main_content .btn_area .btn {
+	display: inline-block;
+}
+
+.main_content .btn_area .btn input {
+	padding: 8px 47px 8px 30px;
+	color: #fff;
+	font-size: 86%;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	background: #3194e0 url(../img/icon_arrow_submit.png) right center no-repeat;
+}
+
+.main_content .btn_area .btn_back {
+	display: inline-block;
+	margin-right: 30px;
+}
+
+.main_content .btn_area .btn_back input {
+	padding: 8px 50px 8px 69px;
+	color: #fff;
+	font-size: 86%;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	background: #888 url(../img/icon_arrow_back.png) left center no-repeat;
+}
+
+.main_content .btn_area .btn_submit {
+	display: inline-block;
+}
+
+.main_content .btn_area .btn_submit input {
+	padding: 8px 69px 8px 50px;
+	color: #fff;
+	font-size: 86%;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	background: #3194e0 url(../img/icon_arrow_submit02.png) right center no-repeat;
+}
+
+.main_content .link_top {
+	padding-bottom: 50px;
+	font-size: 86%;
+	border-bottom: 1px solid #ccc;
+}
+
+.main_content .link_top a {
+	padding-left: 15px;
+	background: url(../img/icon_arrow_link.png) left center no-repeat;
+}
+
+.error_list {
+	margin-bottom: 40px;
+	padding: 10px;
+	list-style-type: none;
+	font-size: 86%;
+	line-height: 1.6em;
+	border-radius: 5px;
+	border: 1px solid #c00;
+}
+
+.error_list li {
+	color: #c00;
+}
+
+
+/* Tablet
+----------------------------------------*/
+@media only screen and (max-width: 980px) {
+
+	.btn input[type="submit"],
+	.btn_back input[type="submit"],
+	.btn_submit input[type="submit"] {
+		-webkit-appearance: none;
+		border-radius: 0;
+	}
+	
+	.main_content .btn_area .btn input[type="submit"] {
+		background: #3194e0 url(../img/sp/icon_arrow_submit.png) right center no-repeat;
+		background-size: auto 13px;
+	}
+	
+	.main_content .btn_area .btn_back input[type="submit"] {
+		padding: 8px 30px 8px 47px;
+		background: #888 url(../img/sp/icon_arrow_back.png) left center no-repeat;
+		background-size: auto 13px;
+	}
+
+	.main_content .btn_area .btn_submit input[type="submit"] {
+		padding: 8px 47px 8px 30px;
+		background: #3194e0 url(../img/sp/icon_arrow_submit.png) right center no-repeat;
+		background-size: auto 13px;
+	}
+	
+	.main_content .link_top a {
+		background: url(../img/sp/icon_arrow_link.png) left center no-repeat;
+		background-size: auto 13px;
+	}
+
+}
+
+
+/* Mini Tablet
+----------------------------------------*/
+@media only screen and (max-width: 649px) {
+}
+
+
+/* Smartphone
+----------------------------------------*/
+@media only screen and (max-width: 414px) {
+
+	.main_content dl dd input,
+	.main_content dl dd textarea,
+	.main_content dl dd .input_long {
+		padding: 3% 5%;
+		width: 90%;
+		max-width: 90%;
+		min-width: 90%;
+		border-radius: 0;
+	}
+	
+	
+}

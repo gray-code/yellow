@@ -1,0 +1,217 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/category/diary/$
+RewriteRule ^(.*)$ https://gray-code.com/category/blog/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/wordpressとmovabletypeの違い/$ [OR]
+RewriteCond %{REQUEST_URI} ^/著作権／コピーライト（copyright）について/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/著作権／コピーライト（copyright）について/$ [OR]
+RewriteCond %{REQUEST_URI} ^/東京五輪エンブレム問題にみる、デザインの難し/$ [OR]
+RewriteCond %{REQUEST_URI} ^/goose\-houseのユニットライブへ行ってきました/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/web-create/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/「超」東大脳　偏差値にとらわれない生き方/$ [OR]
+RewriteCond %{REQUEST_URI} ^/沈黙のwebマーケティング/$ [OR]
+RewriteCond %{REQUEST_URI} ^/魔法の世紀/$ [OR]
+RewriteCond %{REQUEST_URI} ^/結果を出せる人になる！「すぐやる脳」のつくり/$ [OR]
+RewriteCond %{REQUEST_URI} ^/嫌われる勇気/$ [OR]
+RewriteCond %{REQUEST_URI} ^/はみだす力/$ [OR]
+RewriteCond %{REQUEST_URI} ^/金持ちになる方法はあるけれど、金持ちになって/$ [OR]
+RewriteCond %{REQUEST_URI} ^/エッセンシャル思考　最少の時間で成果を最大に/$ [OR]
+RewriteCond %{REQUEST_URI} ^/ザ・ゴール　企業の究極の目的とは何か/$ [OR]
+RewriteCond %{REQUEST_URI} ^/電子書籍リーダー「kindle」レビュー/$ [OR]
+RewriteCond %{REQUEST_URI} ^/「納品」をなくせばうまくいく/$ [OR]
+RewriteCond %{REQUEST_URI} ^/拝金/$ [OR]
+RewriteCond %{REQUEST_URI} ^/zero-to-one-君はゼロから何を生み出せるか/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/book/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/魔法の世紀/feed/$ [OR]
+RewriteCond %{REQUEST_URI} ^/blog/book/魔法の世紀/feed/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/book/魔法の世紀/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/第1感-「最初の2秒」の「なんとなく」が正しい/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/book/第1感-「最初の2秒」の「なんとなく」が正しい/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/wordpress管理画面のログインurlを変更する/$ [OR]
+RewriteCond %{REQUEST_URI} ^/wordpress管理画面のログインurlを変更する/feed/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/wordpress/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/モチベーションの保ち方/$ [OR]
+RewriteCond %{REQUEST_URI} ^/フリーランスとして働くためのマイルールを考え/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/work/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/oculus-riftが予約開始されました/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/input/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/タイで感じる相場の違い/$ [OR]
+RewriteCond %{REQUEST_URI} ^/アラスカ・レポート/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/trip/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/クラス/$ [OR]
+RewriteCond %{REQUEST_URI} ^/変数と定数/$ [OR]
+RewriteCond %{REQUEST_URI} ^/phpが動く仕組み/$ [OR]
+RewriteCond %{REQUEST_URI} ^/foreach文/$ [OR]
+RewriteCond %{REQUEST_URI} ^/for文/$ [OR]
+RewriteCond %{REQUEST_URI} ^/if文/$ [OR]
+RewriteCond %{REQUEST_URI} ^/配列/$ [OR]
+RewriteCond %{REQUEST_URI} ^/while文/$ [OR]
+RewriteCond %{REQUEST_URI} ^/php/getting-started/独自の関数/$ [OR]
+RewriteCond %{REQUEST_URI} ^/独自の関数/$ [OR]
+RewriteCond %{REQUEST_URI} ^/スーパーグローバル/$ [OR]
+RewriteCond %{REQUEST_URI} ^/オブジェクト指向/$ [OR]
+RewriteCond %{REQUEST_URI} ^/オブジェクト/$ [OR]
+RewriteCond %{REQUEST_URI} ^/サーバー情報の取得/$
+RewriteRule ^(.*)$ https://gray-code.com/php/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/best-practice/phpのセキュリティについて/$ [OR]
+RewriteCond %{REQUEST_URI} ^/phpのセキュリティについて/$ [OR]
+RewriteCond %{REQUEST_URI} ^/PHPのセキュリティについて/$
+RewriteRule ^(.*)$ https://gray-code.com/php/$1 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/2014/03/getting-started-a-skeleton-application/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/04/フォームとアクション/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/04/ルーティングとコントローラー/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/03/phpのパスワード暗号化/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/02/getting-started-with-zend-framework-2/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/zendpermissionsaclの導入/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/04/データベースとモデル/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/zendauthenticationの導入/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/refunds/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/04/モジュール/$ [OR]
+RewriteCond %{REQUEST_URI} ^/category/zendframework2/$ [OR]
+RewriteCond %{REQUEST_URI} ^/php-document/$
+RewriteRule ^(.*)$ https://gray-code.com/category/php/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/interest/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/squareコネクトapi入門/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/金持ち脳と貧乏脳/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/12/2014年の振り返り/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/概要-2/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/自分の中に毒を持て/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/payments/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/merchant/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/newspick-2014-05-20/$ [OR]
+RewriteCond %{REQUEST_URI} apple-app-site-association [OR]
+RewriteCond %{REQUEST_URI} ^/bookmark/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/それでも僕は夢を見る/$ [OR]
+RewriteCond %{REQUEST_URI} ^/.well-known/assetlinks.json$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/newspick-2014-05-14/$ [OR]
+RewriteCond %{REQUEST_URI} ^/category/blog/creative/$ [OR]
+RewriteCond %{REQUEST_URI} ^/category/blog/place/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/強いチームはオフィスを捨てる/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/the-amazing-spider-man-2/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/メソッド/$ [OR]
+RewriteCond %{REQUEST_URI} ^/category/bookmark/movie/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/ランチと再会できる全米最恐アトラクション5選/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/newspick-2014-05-16/$ [OR]
+RewriteCond %{REQUEST_URI} ^/project/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/settlements/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/news-pickup-2014-05-12/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/03/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/02/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/newspic-2014-05-15/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/04/スタイリングと翻訳/$ [OR]
+RewriteCond %{REQUEST_URI} ^/category/blog/news/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/finding-forrester/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/概要/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/使用例/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/bank-account/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/06/ジェフ・ベゾス　果てなき野望/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/newspick-2014-05-22/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/05/newspick-2014-05-21/$ [OR]
+RewriteCond %{REQUEST_URI} ^/zf2-document/$
+RewriteRule ^(.*)$ https://gray-code.com/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/2014/05/wordpressとmovabletypeの違い/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/wordpressとmovabletypeの違い/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/blog/page/2/$
+RewriteRule ^(.*)$ https://gray-code.com/category/blog/page/2/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/blog/web-create/ホームページ運営で使うcmsの種類/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/web-create/ホームページ運営で使うcms/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/category/php/$
+RewriteRule ^(.*)$ https://gray-code.com/php/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/phpが動く仕組み/$
+RewriteRule ^(.*)$ https://gray-code.com/php/how-the-php-working/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/2014/03/phpの変数と定数/$ [OR]
+RewriteCond %{REQUEST_URI} ^/2014/04/変数と定数/$ [OR]
+RewriteCond %{REQUEST_URI} ^/php/getting-started/変数と定数/$
+RewriteRule ^(.*)$ https://gray-code.com/php/変数と定数/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/クラス/$
+RewriteRule ^(.*)$ https://gray-code.com/php/class/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/スーパーグローバル/$
+RewriteRule ^(.*)$ https://gray-code.com/php/super-global/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/オブジェクト指向/$
+RewriteRule ^(.*)$ https://gray-code.com/php/oriented-object/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/foreach文/$
+RewriteRule ^(.*)$ https://gray-code.com/php/foreach-syntax/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/for文/$
+RewriteRule ^(.*)$ https://gray-code.com/php/for-syntax/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/if文/$
+RewriteRule ^(.*)$ https://gray-code.com/php/if-syntax/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/サーバー情報の取得/$ [OR]
+RewriteCond %{REQUEST_URI} ^/サーバー情報/$
+RewriteRule ^(.*)$ https://gray-code.com/php/get-information-of-server/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/getting-started/配列/$
+RewriteRule ^(.*)$ https://gray-code.com/php/array/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/switch文/$ [OR]
+RewriteCond %{REQUEST_URI} ^/php/getting-started/switch文/$ [OR]
+RewriteCond %{REQUEST_URI} ^/php/php/getting-started/switch文/$
+RewriteRule ^(.*)$ https://gray-code.com/php/switch-syntax/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/php/getting-started/独自の関数/$
+RewriteRule ^(.*)$ https://gray-code.com/php/original-function/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/php/best-practice/phpのセキュリティについて/$
+RewriteRule ^(.*)$ https://gray-code.com/php/security-of-php/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/クッキーとセッション/$ [OR]
+RewriteCond %{REQUEST_URI} /php/getting-started/クッキーとセッション/$
+RewriteRule ^(.*)$ https://gray-code.com/php/cookie-and-session/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/php/download-csv-file/$
+RewriteRule ^(.*)$ https://gray-code.com/php/download-for-csv-file/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/2014/06/alaska-report/$
+RewriteRule ^(.*)$ https://gray-code.com/blog/trip/アラスカ・レポート/ [R=301,L]
+RewriteCond %{REQUEST_URI} ^/input/page/2/$
+RewriteRule ^(.*)$ https://gray-code.com/category/blog/input/page/2/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/fb/callback.php$
+RewriteRule ^(.*)$ https://gray-code.com/ [R=301,L]
+</IfModule>
+
+<Files ~ “\.htaccess$”>
+Header set Pragma no-cache
+Header set Cache-Control no-cache
+</Files>
+
+ErrorDocument 404 /404
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

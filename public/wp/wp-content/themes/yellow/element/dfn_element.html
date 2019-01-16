@@ -1,0 +1,38 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>グローバル属性のみ使用することができます。</p>
+		</dd>
+		<dt>title</dt>
+		<dd>
+			<p>定義語を指定します。title属性に指定されたテキストが定義語として扱われます。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>title属性を使う</h3>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;p&gt;&lt;dfn title="HTML"&gt;HTML&lt;/dfn&gt;はWebページをマークアップするための言語です。&lt;/p&gt;</code></pre>
+	</div>
+	<p class="text_caption">表示例</p>
+	<p class="pic"></p>
+
+	<h3>dl要素と合わせて使う</h3>
+	<p>dl要素と組み合わせる場合は、dt要素の中のdfn要素が定義語として扱われます。その場合、dd要素内で定義語に対する説明を記述する必要があります。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;dl&gt;
+	&lt;dt&gt;&lt;dfn&gt;HTML&lt;/dfn&gt;&lt;/dt&gt;
+	&lt;dd&gt;Webページをマークアップするための言語です。&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+	</div>
+
+	<h3>abbr要素と合わせて使う</h3>
+	<p>title属性を持ったabbr要素を子葉素として持つ場合、abbr要素のtitle属性を定義語として扱います。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;p&gt;&lt;dfn&gt;&lt;abbr title="HyperText Markup Language"&gt;HTML&lt;/dfn&gt;はWebページをマークアップするための言語です。&lt;/p&gt;</code></pre>
+	</div>
+</section>

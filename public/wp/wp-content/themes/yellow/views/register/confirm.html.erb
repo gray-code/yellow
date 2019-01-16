@@ -1,0 +1,53 @@
+<div class="single-wrapper">
+	<header>
+		<p id="logo"><%= image_tag 'common/logo.svg', alt:'Yellow' %></p>
+	</header>
+	<main class="register-content">
+		<h1>アカウント登録</h1>
+		<ul class="flow-list">
+			<li><span>1</span>仮登録</li><li><span>2</span>メール確認</li><li><span class="current-flow">3</span>本登録</li>
+		</ul>
+		<p class="text-message">登録内容をご確認の上、「登録」ボタンを押してください。</p>
+		<%= form_tag(action: :complete) do %>
+			<ul>
+				<li>
+					<h2>氏名</h2>
+					<p class="text-input-confirm"><%= @yourname %></p>
+				</li>
+				<li>
+					<h2>フリガナ</h2>
+					<p class="text-input-confirm"><%= @furigana %></p>
+				</li>
+				<li>
+					<h2>電話番号</h2>
+					<p class="text-input-confirm"><%= @telnumber %></p>
+				</li>
+				<li>
+					<h2>生年月日</h2>
+					<% birthday = Time.mktime(@birthyear, @birthmonth, @birthday) %>
+					<p class="text-input-confirm"><%= birthday.strftime("%Y年%m月%d日") %></p>
+				</li>
+				<% unless @companyname.blank? %>
+				<li>
+					<h2>屋号</h2>
+					<p class="text-input-confirm"><%= @companyname %></p>
+				</li>
+				<% end %>
+				<li>
+					<h2>パスワード</h2>
+					<p class="text-input-confirm">入力したパスワード</p>
+				</li>
+			</ul>
+			<div class="btn-area"><%= submit_tag( "修正する", class: "btn-white", name: "btn-back") %><%= submit_tag( "登録", class: "btn-yellow", name: "btn-regist") %></div>
+			<%= hidden_field :user, :email, value: @email %>
+			<%= hidden_field :user, :yourname, value: @yourname %>
+			<%= hidden_field :user, :furigana, value: @furigana %>
+			<%= hidden_field :user, :telnumber, value: @telnumber %>
+			<%= hidden_field :user, :birthyear, value: @birthyear %>
+			<%= hidden_field :user, :birthmonth, value: @birthmonth %>
+			<%= hidden_field :user, :birthday, value: @birthday %>
+			<%= hidden_field :user, :companyname, value: @companyname %>
+			<%= hidden_field :user, :password, value: @password %>
+		<% end %>
+	</main>
+</div>

@@ -1,0 +1,35 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>グローバル属性のみ使用することができます。</p>
+		</dd>
+		<dt>cite</dt>
+		<dd>
+			<p>参照するリソースがある場合にURLを指定します。</p>
+		</dd>
+		<dt>datetime</dt>
+		<dd>
+			<p>追記した日時を指定します。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<p>アップデート履歴を例にしたサンプルコードです。削除した項目については<a href="/html_css/del要素/">del要素</a>を使っています。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;h1&gt;ソフトウェアのアップデート履歴&lt;/h1&gt;
+&lt;ul&gt;
+	&lt;li&gt;自動改行機能の実装&lt;/li&gt;
+	&lt;li&gt;編集者管理機能&lt;/li&gt;
+	&lt;li&gt;&lt;del datetime="2016-01-05"&gt;レイアウト編集機能&lt;/del&gt;&lt;ins datetime="2016-01-05"&gt;機能更新に伴い廃止となりました&lt;/ins&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;del datetime="2016-01-05"&gt;アップデート通知機能&lt;/del&gt;&lt;ins datetime="2016-01-05"&gt;機能更新に伴い廃止となりました&lt;/ins&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;ins datetime="2016-01-20"&gt;自動翻訳機能&lt;/ins&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;ins datetime="2016-01-20"&gt;画像補正&lt;/ins&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+	</div>
+	<p class="text_caption">ブラウザでの表示例</p>
+	<p class="pic"></p>
+</section>

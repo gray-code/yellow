@@ -1,0 +1,175 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>下記の属性に加え、グローバル属性を指定することもできます。</p>
+		</dd>
+		<dt>charset</dt>
+		<dd>
+			<p>「UTF-8」や「Shift-JIS」など、文書の文字コードを指定します。</p>
+		</dd>
+		<dt id="attr_name">name</dt>
+		<dd>
+			<p>メタデータの種類を表し、必ずcontent属性とペアで指定します。</p>
+			<ul>
+				<li>
+					<h3>application-name</h3>
+					<p>HTML文書がWebアプリケーションの中の一部である場合、アプリケーション名をcontent属性に記述します。</p>
+				</li>
+				<li>
+					<h3>author</h3>
+					<p>著作者を明示したい場合に、content属性に著者名を記述します。</p>
+				</li>
+				<li>
+					<h3>description</h3>
+					<p>HTML文書の概要（内容が書かれた短い文章）、content属性に記述します。1つの文書に1つだけ指定することができます。SEOを意識すると、1つのサイト内に全く同じ内容のdescriptionが書かれたページが複数存在することは望ましくありません。また、140文字前後が最適とされ、長すぎると評価が悪くなってしまう可能性があります。</p>
+				</li>
+				<li>
+					<h3>generator</h3>
+					<p>HTML文書がソフトウェアによって動的に生成されている場合に、そのソフトウェア名をcontent属性に記述します。</p>
+				</li>
+				<li>
+					<h3>keywords</h3>
+					<p>HTML文書に描かれている内容のキーワードを、content属性に記述します。「,」で区切ることで複数入力可。ただし、SEOとしては効果が期待できないため、keywordsメタデータは記述しないことが多いです。</p>
+				</li>
+				<li>
+					<h3>robots</h3>
+					<p>検索エンジンのクローラーへの指定をcontent属性へ記述します。インデックスの拒否、ページ中の全リンク先のクロールを拒否したい場合に使用します。</p>
+				</li>
+				<li>
+					<h3>viewport</h3>
+					<p>スマホやタブレット端末などへの、Webページ表示を制御したい場合に使用します。</p>
+				</li>
+			</ul>
+		</dd>
+		<dt>http-equiv</dt>
+		<dd>
+			<p>文書のスタイルシートやスクリプトで使う言語の指定、その他関連する処理方法を指定することができます。</p>
+			<ul>
+				<li>
+					<h3>content-type</h3>
+					<p>文字コードを指定する場合に使用します。charset属性で代替できます。</p>
+				</li>
+				<li>
+					<h3>default-style</h3>
+					<p>特定のスタイルシートを優先して使用したい場合に指定します。</p>
+				</li>
+				<li>
+					<h3>refresh</h3>
+					<p>ページの自動更新やリダイレクトの設定を指定することができます。エラーページなどで、「一定時間ページを表示してからトップページへリダイレクト」といった処理が行えます。</p>
+				</li>
+				<li>
+					<h3>Content-Style-Type</h3>
+					<p>「text/css」など、ページで使用する基本スタイルシート言語を指定します。</p>
+				</li>
+				<li>
+					<h3>Content-Script-Type</h3>
+					<p>「text/javascript」など、ページで使用する基本スクリプト言語を指定します。</p>
+				</li>
+			</ul>
+		</dd>
+		<dt>property</dt>
+		<dd>
+			<p>FacebookやTwitterなどのSNS向けメタデータを指定することができます。これを<strong>OGP（Open Graph Protocol）</strong>と言い、WebページをSNSに投稿する際に、ここで指定したデータを優先的に表示させることができます。<br>代表的なものをいくつかご紹介します。より詳細な仕様については<a href="http://ogp.me/" target="_blank">原文（英語）</a>をご参照ください。</p>
+			<ul>
+				<li>
+					<h3>og:title</h3>
+					<p>サイト名</p>
+				</li>
+				<li>
+					<h3>og:type</h3>
+					<p>サイトタイプ（website、blog、articleなど）</p>
+				</li>
+				<li>
+					<h3>og:url</h3>
+					<p>サイトURL</p>
+				</li>
+				<li>
+					<h3>og:image</h3>
+					<p>投稿時に優先して表示されるサムネイル画像</p>
+				</li>
+				<li>
+					<h3>og:description</h3>
+					<p>ページ内容の概要文</p>
+				</li>
+			</ul>
+		</dd>
+		<dt>content</dt>
+		<dd>
+			<p>name属性、http-equiv属性、robots属性など他の属性とセットで使用します。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>著者情報、キーワード、ディスクリプション（概要）の設定例</h3>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;meta name="author" content="山田太郎"&gt;
+&lt;meta name="keywords" content="HTML,HTML5,CSS,CSS3,CSS2.1"&gt;
+&lt;meta name="description" content="ここに、HTML文書の概要を140文字程度で記述します。"&gt;</code></pre>
+	</div>
+
+	<h3>Viewportの設定</h3>
+	<ul>
+		<li>
+			<h3>initial-scale</h3>
+			<p>ページが読み込まれて表示されるときの、拡大・縮小率を設定します。初期状態（指定しない場合）ではページを端末の画面に合わせて表示。「minimum-scale」と「maximum-scale」の間の値のみ設定できます。</p>
+		</li>
+		<li>
+			<h3>minimum-scale</h3>
+			<p>最小倍率を0〜10の間で指定します。初期値は0.25。</p>
+		</li>
+		<li>
+			<h3>maximum-scale</h3>
+			<p>最大倍率を0〜10の間で指定します。初期値は1.6</p>
+		</li>
+		<li>
+			<h3>width</h3>
+			<p>表示領域の幅を指定します。200px〜10000pxの範囲で指定するか、「device-width」で端末の画面サイズを設定することができます。</p>
+		</li>
+		<li>
+			<h3>height</h3>
+			<p>表示領域の高さを指定します。233px〜10000pxの範囲で指定するか、「device-height」で端末の画面サイズを設定することができます。</p>
+		</li>
+		<li>
+			<h3>user-scalable</h3>
+			<p>ユーザーのズーム操作を制御します。「yes」（初期値）を指定するとズーム可、「no」を指定すると「ズーム不可」。</p>
+		</li>
+	</ul>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;!-- Webページの表示を端末サイズに合わせ、ユーザによるズーム操作を不可に設定 --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;</code></pre>
+	</div>
+
+	<h3>検索エンジンクローラーへの指定</h3>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;!-- インデックスを拒否 --&gt;
+&lt;meta name="robots" content="noindex"&gt;		
+
+&lt;!-- ページ内の全リンク先クロールを拒否 --&gt;
+&lt;meta name="robots" content="nofollow"&gt;
+
+&lt;!-- インデックス、リンク先のクロールをどちらも拒否 --&gt;
+&lt;meta name="robots" content="noindex,nofollow"&gt;</code></pre>
+	</div>
+
+	<h3>リダイレクト設定</h3>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;!-- 10秒毎に再読み込み --&gt;
+&lt;meta name="refresh" content="10"&gt;		
+
+&lt;!-- 3秒後に指定したURLへリダイレクト --&gt;
+&lt;meta name="refresh" content="3; url=https://gray-code.com"&gt;</code></pre>
+	</div>
+
+	<h3>OGPタグの設定</h3>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;meta property="og:title" content="GRAYCODE"&gt;		
+&lt;meta property="og:url" content="https://gray-code.com"&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;meta property="og:description" content="HTML5の情報を発信中!!"&gt;
+&lt;meta property="og:image" content="https://gray-code.com/images/logo.png"&gt;</code></pre>
+	</div>
+</section>

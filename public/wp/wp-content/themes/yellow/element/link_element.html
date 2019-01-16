@@ -1,0 +1,117 @@
+<section>
+	<h2><span>属性</span></h2>
+	<dl class="attr_list">
+		<dt>グローバル属性</dt>
+		<dd>
+			<p>下記の属性に加え、グローバル属性を指定することもできます。</p>
+		</dd>
+		<dt>href</dt>
+		<dd>
+			<p>リソースのリンク先URLを指定します。</p>
+		</dd>
+		<dt>rel</dt>
+		<dd>
+			<p>現在のページに対する、リンク先リソースの位置付けを指定します。</p>
+			<ul>
+				<li>
+					<h3>alternate</h3>
+					<p>現在のページの代替となるページを指定</p>
+				</li>
+				<li>
+					<h3>author</h3>
+					<p>著作情報を指定</p>
+				</li>
+				<li>
+					<h3>help</h3>
+					<p>現在のページに対するヘルプページを指定</p>
+				</li>
+				<li>
+					<h3>icon</h3>
+					<p>ページのアイコン（ファビコン）を指定</p>
+				</li>
+				<li>
+					<h3>license</h3>
+					<p>ライセンスページを指定</p>
+				</li>
+				<li>
+					<h3>next</h3>
+					<p>現在のページが連続したページの1部であった場合に、次ページのリンクを指定</p>
+				</li>
+				<li>
+					<h3>prev</h3>
+					<p>現在のページが連続したページの1部であった場合に、前ページのリンクを指定</p>
+				</li>
+				<li>
+					<h3>prefetch</h3>
+					<p>リンク先リソースをあらかじめキャッシュするよう指定</p>
+				</li>
+				<li>
+					<h3>search</h3>
+					<p>関連ページを検索するページURLを指定</p>
+				</li>
+				<li>
+					<h3>stylesheet</h3>
+					<p>スタイルシートを表します。</p>
+				</li>
+			</ul>
+		</dd>
+		<dt>media</dt>
+		<dd>
+			<p>リンク先リソースの該当するメディアを指定します。PCなどのディスプレイであれば「screen」、テレビであれば「tv」、モバイルデバイスであれば「handheld」など。</p>
+		</dd>
+		<dt>hreflang</dt>
+		<dd>
+			<p>リンク先リソースの言語を指定します。例えばリンク先が英語で記述されたページであれば「en」、日本語だったら「ja」というように指定します。リンク先リソースが現在のページと同じ言語の場合は省略することができます。</p>
+		</dd>
+		<dt>type</dt>
+		<dd>
+			<p>リンク先リソースのMIMEタイプを指定します。スタイルシートであれば「text/css」、PDFファイルは「application/pdf」など。</p>
+		</dd>
+		<dt>sizes</dt>
+		<dd>
+			<p>アイコン画像を読み込む場合にサイズを指定します。値は「横幅x高さ」の形式（「x」は半角英字のエックス）で指定します。サイズを複数指定することもでき、その場合は「sizes="16x16 32x32"」と半角スペースで区切って指定してください。</p>
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h2><span>使用例</span></h2>
+	<h3>スタイルシートを読み込む</h3>
+	<p>こちらは最も一般的な読み込み方法となります。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;link rel="stylesheet" type="text/css" href="style.css"&gt;</code></pre>
+	</div>
+	<p>優先スタイルシートを指定したい場合はtitle属性を指定します。下記の例では1行目のスタイルシートを読み込んでから、2・3行目のうち、先に記述されている2行目だけが読み込まれます。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;link rel="stylesheet" type="text/css" href="style.css"&gt;
+&lt;link rel="stylesheet" type="text/css" title="スタイルシート1" href="style.css"&gt;
+&lt;link rel="stylesheet" type="text/css" title="スタイルシート2" href="style.css"&gt;</code></pre>
+	</div>
+	<p>rel属性に「alternate」を指定してtitle属性も指定すると、閲覧者が代替スタイルシートを選択することができます。下記の例では1行目のスタイルシートを読み込みつつ、ブラウザーのメニューなどから2・3行目のいずれかのスタイルシートを選択できるようになります。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;link rel="stylesheet" type="text/css" href="style.css"&gt;
+&lt;link rel="alternate stylesheet" type="text/css" title="スタイルシート1" href="style.css"&gt;
+&lt;link rel="alternate stylesheet" type="text/css" title="スタイルシート2" href="style.css"&gt;</code></pre>
+	</div>
+
+	<h3>アイコン（ファビコン）を読み込む</h3>
+	<p>ブラウザーのタブやブックマーク一覧に表示される、サイトのアイコンを指定します。<br>2行目はWindowsのInternetExploere用に用意する場合にのみ記述します。</p>
+	<p>スマホやタブレットのブックマーク機能として、アプリのようにホーム画面へリンクを表示させることができます。3行目は、その時に表示されるアイコン画像を指定する場合に記述します。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;link rel="icon" type="image/png" href="img/favicon.png"&gt;
+&lt;link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"&gt;
+&lt;link rel="apple-touch-icon" type="image/png" href="img/spicon.png"&gt;</code></pre>
+	</div>
+
+	<h3>著者情報としてGoogle+アカウントを関連付ける</h3>
+	<p>Google+のプロフィールページへのURLを使うことで、Googleの検索結果で表示される際にGoogle+に登録された著者情報を表示させることができます。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;link rel="author" href="Google+アカウントのURL"&gt;</code></pre>
+	</div>
+
+	<h3>検索エンジンに対し、正式なURLを指定する</h3>
+	<p>WordPressなどのCMSを使用している場合などに、1つのページに対し複数のURLが存在することがあります。しかし、検索エンジンはURLが異なると別ページとして扱ってしまいます。そのようなことを防ぐために本来のURLを指定することで、「複数のURLからアクセスできるけど、本当はこのURLからアクセスされることを想定しています」と示すことができます。</p>
+	<div class="code_wrap">
+		<pre class="code_box"><code class="html">&lt;link rel="canonical" href="https://gray-code.com"&gt;</code></pre>
+	</div>
+</section>
