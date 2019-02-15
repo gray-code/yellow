@@ -1,1 +1,2 @@
-Accounting application(Develop version)
+Accounting application
+(Develop version)
