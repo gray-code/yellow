@@ -1,2 +1,2 @@
 Accounting application
-(Develop version)
+(Develop version.)
